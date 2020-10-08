@@ -6,3 +6,5 @@ repo_name: tricksterproxy/trickster
 
 theme:
   name: material
+  logo: images/logos/trickster-logo.svg
+  favicon: images/logos/trickster-logo.svg
