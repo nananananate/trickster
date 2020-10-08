@@ -1,0 +1,907 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="http://tricksterproxy.io/multi-origin/">
+      
+      
+      <link rel="shortcut icon" href="../images/logos/trickster-logo.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Using Multiple-Origins with a single Trickster instance - Trickster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-multiple-origins-with-a-single-trickster-instance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://tricksterproxy.io/" title="Trickster" class="md-header-nav__button md-logo" aria-label="Trickster">
+      
+  <img src="../images/logos/trickster-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Trickster
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Using Multiple-Origins with a single Trickster instance
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/tricksterproxy/trickster/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tricksterproxy/trickster
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://tricksterproxy.io/" title="Trickster" class="md-nav__button md-logo" aria-label="Trickster">
+      
+  <img src="../images/logos/trickster-logo.svg" alt="logo">
+
+    </a>
+    Trickster
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/tricksterproxy/trickster/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tricksterproxy/trickster
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Welcome to MkDocs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../caches/" class="md-nav__link">
+      Cache Options
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../clickhouse/" class="md-nav__link">
+      ClickHouse Support
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../collapsed-forwarding/" class="md-nav__link">
+      Collapsed Forwarding
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configuring/" class="md-nav__link">
+      Configuring Trickster
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../health/" class="md-nav__link">
+      Health Checks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../influxdb/" class="md-nav__link">
+      InfluxDB Support
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" class="md-nav__link">
+      Trickster Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Using Multiple-Origins with a single Trickster instance
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Using Multiple-Origins with a single Trickster instance
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    Basic Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-origin" class="md-nav__link">
+    Default Origin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-based-routing-configurations" class="md-nav__link">
+    Path-based Routing Configurations
+  </a>
+  
+    <nav class="md-nav" aria-label="Path-based Routing Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-http-path-as-the-multi-origin-indicator" class="md-nav__link">
+    Using HTTP Path as the Multi-Origin Indicator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-alias-configuration" class="md-nav__link">
+    DNS Alias Configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling-path-based-routing-for-an-origin" class="md-nav__link">
+    Disabling Path-based Routing for an Origin
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../negative-caching/" class="md-nav__link">
+      Negative Caching
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../new-changed-1.1/" class="md-nav__link">
+      Trickster 1.1
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../paths/" class="md-nav__link">
+      Customizing HTTP Path Behavior
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../per-query-instructions/" class="md-nav__link">
+      Per-Query Time Series Instructions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../placement/" class="md-nav__link">
+      Where to Place Trickster
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../promsim/" class="md-nav__link">
+      PromSim Update
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../range_request/" class="md-nav__link">
+      Byte Range Request Support
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../request_rewriters/" class="md-nav__link">
+      Request Rewriters
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../retention/" class="md-nav__link">
+      Trickster Caching Retention Policies
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" class="md-nav__link">
+      Trickster Roadmap
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rule/" class="md-nav__link">
+      Rule Origin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../supported-origin-types/" class="md-nav__link">
+      Supported Origin Types
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../tls/" class="md-nav__link">
+      TLS Support
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../tracing/" class="md-nav__link">
+      Distributed Tracing via OpenTelemetry
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24">
+    
+    <label class="md-nav__link" for="nav-24">
+      Developer
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developer" data-md-level="1">
+      <label class="md-nav__title" for="nav-24">
+        <span class="md-nav__icon md-icon"></span>
+        Developer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../developer/adding-new-config/" class="md-nav__link">
+      Adding a New Configuration Value
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../developer/origin-extensibility/" class="md-nav__link">
+      Extending Trickster to Support a New Origin Type
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../developer/spinning-new-release/" class="md-nav__link">
+      Spinning New Trickster Release
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../developer/tracing/" class="md-nav__link">
+      Tracing support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    Basic Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-origin" class="md-nav__link">
+    Default Origin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-based-routing-configurations" class="md-nav__link">
+    Path-based Routing Configurations
+  </a>
+  
+    <nav class="md-nav" aria-label="Path-based Routing Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-http-path-as-the-multi-origin-indicator" class="md-nav__link">
+    Using HTTP Path as the Multi-Origin Indicator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-alias-configuration" class="md-nav__link">
+    DNS Alias Configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling-path-based-routing-for-an-origin" class="md-nav__link">
+    Disabling Path-based Routing for an Origin
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/tricksterproxy/trickster/edit/master/docs/multi-origin.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="using-multiple-origins-with-a-single-trickster-instance">Using Multiple-Origins with a single Trickster instance</h1>
+<p>Trickster supports proxying to multiple origins by examining the inbound request and using a multiplexer to direct the proxied request to the correct upstream origin, in the same way that web servers support virtual hosting. Multi-origin does <em>not</em> equate to High Availability support; Trickster does not offer any kind of redundancy features. Using Multiple Origins simply means that a single Trickster instance can accelerate any number of unrelated upstream origins instead of requiring a Trickster instance per-origin.</p>
+<p>There are 2 ways to configure multi-origin support.</p>
+<ul>
+<li>HTTP Pathing</li>
+<li>DNS Aliasing</li>
+</ul>
+<h2 id="basic-usage">Basic Usage</h2>
+<p>To utilize Multiple Origins, you must craft a Trickster configuration file to be read when Trickster starts up - multi-origin is not supported with simply environment variables or command line arguments. The <a href="../cmd/trickster/conf/example.conf">example.conf</a> provides good documentation and commented sections demonstrating multi-origin. The config file should be placed in <code>/etc/trickster/trickster.conf</code> unless you specify a different path when starting Trickster with the <code>-config</code> command line argument.</p>
+<p>Each origin that your Trickster instance supports must be explicitly enumerated in the configuration file. Trickster does not support open proxying.</p>
+<p>Each origin is identified by an Origin Name, provided in the configuration section header for the origin ([origins.NAME]). For path-based routing configurations, the Origin Name can be simple words. For DNS Aliasing, the Origin Name must match an FQDN that resolves to your Trickster instance. Also for DNS Aliasing, enclose the FQDN in quotes in the origin config section header (e.g., <code>[origins.'db.example.com']</code>).</p>
+<h3 id="default-origin">Default Origin</h3>
+<p>Whether proxying to one or more upstreams, Trickster has the concept of a "default" origin, which means it does not require a specific DNS hostname in the request, or a specific URL path, in order to proxy the request to a known origin. When a default origin is configured, if the inbound request does not match any mapped origins by path or FQDN, the request will automatically be mapped to the default origin. You are probably familiar with this behavior from when you first tried out Trickster with the using command line arguments.</p>
+<p>Here's an example: if you have Trickster configured with an origin named <code>foo</code> that proxies to <code>http://foo/</code> and is configured as the default origin, then requesting <code>http://trickster/image.jpg</code> will initiate a proxy request to <code>http://foo/image.jpg</code>, without requiring the path be prefixed with <code>/foo</code>. But requesting to <code>http://trickster/foo/image.jpg</code> would also work.</p>
+<p>The default origin can be configured by setting <code>is_default = true</code> for the origin you have elected to make the default.  Having a default origin is optional. In a single-origin configuration, Trickster will automatically set the sole origin as <code>is_default = true</code> unless you explicly set <code>is_default = false</code> in the configuration file. If you have multiple origins, and don't wish to have a default origin, you can just omit the value for all origins. If you set <code>is_default = true</code> for more than one origin, Trickster will exit with a fatal error on startup.</p>
+<h3 id="path-based-routing-configurations">Path-based Routing Configurations</h3>
+<p>In this mode, Trickster will use a single FQDN but still map to multiple upstream origins. This is the simplest setup and requires the least amount of work. The client will indicate which origin is desired in URL Path for the request.</p>
+<p>Example Path-based Multi-Origin Configuration:</p>
+<pre><code class="language-toml">[origins]
+
+    # origin1 origin
+    [origins.origin1]
+        origin_url = 'http://prometheus.example.com:9090'
+        provider = 'prometheus'
+        cache_name = 'default'
+        is_default = true
+
+    # &quot;foo&quot; origin
+    [origins.foo]
+        origin_url = 'http://influxdb-foo.example.com:9090'
+        provider = 'influxdb'
+        cache_name = 'default'
+
+    # &quot;bar&quot; origin
+    [origins.bar]
+        origin_url = 'http://prometheus-bar.example.com:9090'
+        provider = 'prometheus'
+        cache_name = 'default'
+</code></pre>
+<h4 id="using-http-path-as-the-multi-origin-indicator">Using HTTP Path as the Multi-Origin Indicator</h4>
+<p>The client prefixes the Trickster request path with the Origin Name.</p>
+<p>This is the recommended method for integrating multi-origin support into Grafana.</p>
+<p>Example Client Request URLs:</p>
+<ul>
+<li>
+<p>To Request from Origin <code>foo</code>: <a href="http://trickster.example.com:8480/foo/query?query=xxx">http://trickster.example.com:8480/foo/query?query=xxx</a></p>
+</li>
+<li>
+<p>To Request from Origin <code>bar</code>: <a href="http://trickster.example.com:8480/bar/query?query=xxx">http://trickster.example.com:8480/bar/query?query=xxx</a></p>
+</li>
+<li>
+<p>To Request from Origin <code>origin1</code> as default: <a href="http://trickster.example.com:8480/query?query=xxx">http://trickster.example.com:8480/query?query=xxx</a></p>
+</li>
+<li>
+<p>To Request from Origin <code>origin1</code> (Method 2, with Origin Name): <a href="http://trickster.example.com:8480/origin1/query?query=xxx">http://trickster.example.com:8480/origin1/query?query=xxx</a></p>
+</li>
+<li>
+<p>Configuring Grafana to request from origin <code>foo</code> via Trickster:</p>
+</li>
+</ul>
+<p><img src="./images/grafana-path-origin.png" width=610 /></p>
+<h3 id="dns-alias-configuration">DNS Alias Configuration</h3>
+<p>In this mode, multiple DNS records point to a single Trickster instance. The FQDN used by the client to reach Trickster is mapped to specific origin configurations using the <code>hosts</code> list. In this mode, the URL Path is <em>not</em> considered during Origin Selection.</p>
+<p>Example DNS-based Origin Configuration:</p>
+<pre><code class="language-toml">[origins]
+
+    # origin1 origin
+    [origins.origin1]
+        hosts = [ '1.example.com', '2.example.com' ] # users can route to this origin via these FQDNs, or via `/origin1`
+        origin_url = 'http://prometheus.example.com:9090'
+        provider = 'prometheus'
+        cache_name = 'default'
+        is_default = true
+
+    # &quot;foo&quot; origin
+    [origins.foo]
+        hosts = [ 'trickster-foo.example.com' ] # users can route to this origin via these FQDNs, or via `/foo`
+        origin_url = 'http://prometheus-foo.example.com:9090'
+        provider = 'prometheus'
+        cache_name = 'default'
+
+    # &quot;bar&quot; origin
+    [origins.bar]
+        hosts = [ 'trickster-bar.example.com' ] # users can route to this origin via these FQDNs, or via `/bar`
+        origin_url = 'http://prometheus-bar.example.com:9090'
+        provider = 'prometheus'
+        cache_name = 'default'
+
+</code></pre>
+<p>Example Client Request URLs:</p>
+<ul>
+<li>
+<p>To Request from Origin <code>foo</code>: <a href="http://trickster-foo.example.com:8480/query?query=xxx">http://trickster-foo.example.com:8480/query?query=xxx</a></p>
+</li>
+<li>
+<p>To Request from Origin <code>bar</code>: <a href="http://trickster-bar.example.com:8480/query?query=xxx">http://trickster-bar.example.com:8480/query?query=xxx</a></p>
+</li>
+<li>
+<p>To Request from Origin <code>origin1</code> as default: <a href="http://trickster.example.com:8480/query?query=xxx">http://trickster.example.com:8480/query?query=xxx</a></p>
+</li>
+<li>
+<p>To Request from Origin <code>origin1</code> (Method 2, via FQDN): <a href="http://origin1.example.com:8480/query?query=xxx">http://origin1.example.com:8480/query?query=xxx</a></p>
+</li>
+</ul>
+<p>Note: It is currently possible to specify the same FQDN in multiple origin configurations. You should not do this (obviously). A future enhancement will cause Trickster to exit fatally upon detection at startup.</p>
+<h2 id="disabling-path-based-routing-for-an-origin">Disabling Path-based Routing for an Origin</h2>
+<p>You may wish for an origin to be inaccessible via the <code>/origin_name/</code> path, and only by Hostname or as the target of a <a href="../rule/">rule</a>. You can disable path routing by setting <code>path_routing_disabled = true</code> for the origin, as in this example, which requires the Request's Host header match <code>1.example.com</code> or <code>2.example.com</code> in order to be routed to the origin:</p>
+<pre><code class="language-toml">[origins]
+
+    # origin1 origin
+    [origins.origin1]
+        hosts = [ '1.example.com', '2.example.com' ]
+        origin_url = 'http://prometheus.example.com:9090'
+        provider = 'prometheus'
+        cache_name = 'default'
+        is_default = false
+        path_routing_disabled = true
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../metrics/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Trickster Metrics
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../negative-caching/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Negative Caching
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

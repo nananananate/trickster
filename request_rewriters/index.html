@@ -1,0 +1,1352 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="http://tricksterproxy.io/request_rewriters/">
+      
+      
+      <link rel="shortcut icon" href="../images/logos/trickster-logo.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Request Rewriters - Trickster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#request-rewriters" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://tricksterproxy.io/" title="Trickster" class="md-header-nav__button md-logo" aria-label="Trickster">
+      
+  <img src="../images/logos/trickster-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Trickster
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Request Rewriters
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/tricksterproxy/trickster/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tricksterproxy/trickster
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://tricksterproxy.io/" title="Trickster" class="md-nav__button md-logo" aria-label="Trickster">
+      
+  <img src="../images/logos/trickster-logo.svg" alt="logo">
+
+    </a>
+    Trickster
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/tricksterproxy/trickster/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tricksterproxy/trickster
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Welcome to MkDocs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../caches/" class="md-nav__link">
+      Cache Options
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../clickhouse/" class="md-nav__link">
+      ClickHouse Support
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../collapsed-forwarding/" class="md-nav__link">
+      Collapsed Forwarding
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configuring/" class="md-nav__link">
+      Configuring Trickster
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../health/" class="md-nav__link">
+      Health Checks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../influxdb/" class="md-nav__link">
+      InfluxDB Support
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" class="md-nav__link">
+      Trickster Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../multi-origin/" class="md-nav__link">
+      Using Multiple-Origins with a single Trickster instance
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../negative-caching/" class="md-nav__link">
+      Negative Caching
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../new-changed-1.1/" class="md-nav__link">
+      Trickster 1.1
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../paths/" class="md-nav__link">
+      Customizing HTTP Path Behavior
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../per-query-instructions/" class="md-nav__link">
+      Per-Query Time Series Instructions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../placement/" class="md-nav__link">
+      Where to Place Trickster
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../promsim/" class="md-nav__link">
+      PromSim Update
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../range_request/" class="md-nav__link">
+      Byte Range Request Support
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Request Rewriters
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Request Rewriters
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#where-rewriters-can-be-used" class="md-nav__link">
+    Where Rewriters Can Be Used
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instruction-construction-guide" class="md-nav__link">
+    Instruction Construction Guide
+  </a>
+  
+    <nav class="md-nav" aria-label="Instruction Construction Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    header
+  </a>
+  
+    <nav class="md-nav" aria-label="header">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header-set" class="md-nav__link">
+    header set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-replace" class="md-nav__link">
+    header replace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-delete" class="md-nav__link">
+    header delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-append" class="md-nav__link">
+    header append
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    path
+  </a>
+  
+    <nav class="md-nav" aria-label="path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-set" class="md-nav__link">
+    path set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-replace" class="md-nav__link">
+    path replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param" class="md-nav__link">
+    param
+  </a>
+  
+    <nav class="md-nav" aria-label="param">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#param-set" class="md-nav__link">
+    param set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param-replace" class="md-nav__link">
+    param replace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param-delete" class="md-nav__link">
+    param delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param-append" class="md-nav__link">
+    param append
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#params" class="md-nav__link">
+    params
+  </a>
+  
+    <nav class="md-nav" aria-label="params">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#params-set" class="md-nav__link">
+    params set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#params-replace" class="md-nav__link">
+    params replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    method
+  </a>
+  
+    <nav class="md-nav" aria-label="method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-set" class="md-nav__link">
+    method set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host" class="md-nav__link">
+    host
+  </a>
+  
+    <nav class="md-nav" aria-label="host">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-set" class="md-nav__link">
+    host set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-replace" class="md-nav__link">
+    host replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hostname" class="md-nav__link">
+    hostname
+  </a>
+  
+    <nav class="md-nav" aria-label="hostname">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hostname-set" class="md-nav__link">
+    hostname set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hostname-replace" class="md-nav__link">
+    hostname replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port" class="md-nav__link">
+    port
+  </a>
+  
+    <nav class="md-nav" aria-label="port">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-set" class="md-nav__link">
+    port set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-replace" class="md-nav__link">
+    port replace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-delete" class="md-nav__link">
+    port delete
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheme" class="md-nav__link">
+    scheme
+  </a>
+  
+    <nav class="md-nav" aria-label="scheme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheme-set" class="md-nav__link">
+    scheme set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../retention/" class="md-nav__link">
+      Trickster Caching Retention Policies
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" class="md-nav__link">
+      Trickster Roadmap
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rule/" class="md-nav__link">
+      Rule Origin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../supported-origin-types/" class="md-nav__link">
+      Supported Origin Types
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../tls/" class="md-nav__link">
+      TLS Support
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../tracing/" class="md-nav__link">
+      Distributed Tracing via OpenTelemetry
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24">
+    
+    <label class="md-nav__link" for="nav-24">
+      Developer
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Developer" data-md-level="1">
+      <label class="md-nav__title" for="nav-24">
+        <span class="md-nav__icon md-icon"></span>
+        Developer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../developer/adding-new-config/" class="md-nav__link">
+      Adding a New Configuration Value
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../developer/origin-extensibility/" class="md-nav__link">
+      Extending Trickster to Support a New Origin Type
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../developer/spinning-new-release/" class="md-nav__link">
+      Spinning New Trickster Release
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../developer/tracing/" class="md-nav__link">
+      Tracing support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#where-rewriters-can-be-used" class="md-nav__link">
+    Where Rewriters Can Be Used
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instruction-construction-guide" class="md-nav__link">
+    Instruction Construction Guide
+  </a>
+  
+    <nav class="md-nav" aria-label="Instruction Construction Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    header
+  </a>
+  
+    <nav class="md-nav" aria-label="header">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header-set" class="md-nav__link">
+    header set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-replace" class="md-nav__link">
+    header replace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-delete" class="md-nav__link">
+    header delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-append" class="md-nav__link">
+    header append
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    path
+  </a>
+  
+    <nav class="md-nav" aria-label="path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-set" class="md-nav__link">
+    path set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-replace" class="md-nav__link">
+    path replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param" class="md-nav__link">
+    param
+  </a>
+  
+    <nav class="md-nav" aria-label="param">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#param-set" class="md-nav__link">
+    param set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param-replace" class="md-nav__link">
+    param replace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param-delete" class="md-nav__link">
+    param delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param-append" class="md-nav__link">
+    param append
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#params" class="md-nav__link">
+    params
+  </a>
+  
+    <nav class="md-nav" aria-label="params">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#params-set" class="md-nav__link">
+    params set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#params-replace" class="md-nav__link">
+    params replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    method
+  </a>
+  
+    <nav class="md-nav" aria-label="method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-set" class="md-nav__link">
+    method set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host" class="md-nav__link">
+    host
+  </a>
+  
+    <nav class="md-nav" aria-label="host">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-set" class="md-nav__link">
+    host set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-replace" class="md-nav__link">
+    host replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hostname" class="md-nav__link">
+    hostname
+  </a>
+  
+    <nav class="md-nav" aria-label="hostname">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hostname-set" class="md-nav__link">
+    hostname set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hostname-replace" class="md-nav__link">
+    hostname replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port" class="md-nav__link">
+    port
+  </a>
+  
+    <nav class="md-nav" aria-label="port">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-set" class="md-nav__link">
+    port set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-replace" class="md-nav__link">
+    port replace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-delete" class="md-nav__link">
+    port delete
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheme" class="md-nav__link">
+    scheme
+  </a>
+  
+    <nav class="md-nav" aria-label="scheme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheme-set" class="md-nav__link">
+    scheme set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/tricksterproxy/trickster/edit/master/docs/request_rewriters.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="request-rewriters">Request Rewriters</h1>
+<p>A Request Rewriter is a named series of instructions that modifies any part of the incoming HTTP request. Request Rewriters are used in various parts of the Trickster configuration to make scoped changes. For example, a rewriter can modify the path, headers, parameters, etc. of a URL using mechanisms like search/replace, set and append.</p>
+<p>In a configuration, request rewriters are represented as map of instructions, which themselves are represented as a list of string lists, in the following format:</p>
+<pre><code class="language-toml">[rewriters]
+  [rewriters.example_rewriter]
+  instructions = [
+    [ 'header', 'set', 'Cache-Control', 'max-age=60 ], # instruction 0
+    [ 'path', 'replace', '/cgi-bin/', '/' ],           # instruction 1
+  ]
+</code></pre>
+<p>In this case, any other configuration entity that supports mapping to a rewriter by name can do so with by referencing <code>example_rewriter</code>.</p>
+<h2 id="where-rewriters-can-be-used">Where Rewriters Can Be Used</h2>
+<p>Rewriters are exposed as optional configurations for the following configuration constructs:</p>
+<p>In an <code>origin</code> config, provide a <code>req_rewriter_name</code> to rewrite the Request using the named Request Rewriter, before it is handled by the Path route.</p>
+<p>In a <code>path</code> config, provide a <code>req_rewriter_name</code> to rewrite the Request using the named Request Rewriter, before it is handled by the Path route.</p>
+<p>In a <code>rule</code> config, provide <code>ingress_req_rewriter_name</code>, <code>egress_req_rewriter_name</code> and/or <code>nomatch_req_rewriter_name</code>  configurations to rewrite the Request using the named Request Rewriter. The meaning of Ingress and Egress, in this case, are scoped to a Request's traversal through the Rule in which these configuration values exist, and is unrelated to the wire traversal of the request. For ingress and egress, the rewriter is executed before or after, respectively, it is handled by the Rule (including any modifications made by a matching rule case). The No-Match Request Rewriter is only executed when the request does not match to any defined case.</p>
+<p>In a Rule's <code>case</code> configurations, provide <code>req_rewriter_name</code>. If there is a Rule Case match when executing the Rule against the incoming Request, the configured rewriter will execute on the Request before returning control back to the Rule to execute any configured egress request rewriter and hand the Request off to the next route.</p>
+<h2 id="instruction-construction-guide">Instruction Construction Guide</h2>
+<h3 id="header">header</h3>
+<p><code>header</code> rewriters modify a header with a specific name and support the following operations.</p>
+<h4 id="header-set">header set</h4>
+<p><code>header set</code> will set a specific header to a specific value.</p>
+<p><code>['header', 'set', 'Header-Name', 'header value']</code></p>
+<h4 id="header-replace">header replace</h4>
+<p><code>header replace</code> performs a search/replace function on the Header value of the provided Name</p>
+<p><code>['header', 'replace', 'Header-Name', 'search value', 'replacement value']</code></p>
+<h4 id="header-delete">header delete</h4>
+<p><code>header delete</code> removes, if present, the Header of the provided Name</p>
+<p><code>['header', 'delete', 'Header-Name']</code></p>
+<h4 id="header-append">header append</h4>
+<p><code>header append</code> appends an additional value to Header in the format of <code>value1[, value2=subvalue, ...]</code></p>
+<p><code>['header', 'append', 'Header-Name', 'additional header value']</code></p>
+<h3 id="path">path</h3>
+<p><code>path</code> rewriters modify the full or partial path and support the following operations.</p>
+<h4 id="path-set">path set</h4>
+<p><code>['path', 'set', '/new/path']</code> sets the entire request path to <code>/new/path</code></p>
+<p><code>['path', 'set', 'awesome', 0 ]</code> sets the first part of the path (zero-indexed, split on <code>/</code>) to 'awesome'. For example, <code>/new/path</code> =&gt; <code>/awesome/path</code></p>
+<h4 id="path-replace">path replace</h4>
+<p><code>['path', 'replace', 'search', 'replacement']</code> search replaces against the entire path scalar</p>
+<p><code>['path', 'replace', 'search', 'replacement', 1]</code> search replaces against the second part of the path; For example <code>/my/example-search/path</code> =&gt; <code>/my/example-replacement/path</code></p>
+<h3 id="param">param</h3>
+<p><code>param</code> rewriters modify the URL Query Parameter of the specified name, and support the following operations</p>
+<h4 id="param-set">param set</h4>
+<p><code>param set</code> sets the URL Query Parameter of the provided name to the provided value</p>
+<p><code>['param', 'set', 'paramName', 'new param value']</code></p>
+<h4 id="param-replace">param replace</h4>
+<p><code>param replace</code> performs a search/replace function on the URL Query Parameter value of the provided name</p>
+<p><code>['param', 'replace', 'paramName', 'search value', 'replacement value']</code></p>
+<h4 id="param-delete">param delete</h4>
+<p><code>param delete</code> removes, if present, the URL Query Parameter of the provided name</p>
+<p><code>['param', 'delete', 'paramName']</code></p>
+<h4 id="param-append">param append</h4>
+<p><code>param append</code> appends the provided name and value to the URL Query Parameters regardless of whether a parameter name already exists with the same or different value.</p>
+<p><code>['param', 'append', 'paramName', 'additional param value']</code></p>
+<h3 id="params">params</h3>
+<p><code>params</code> rewriters update the entire URL parameter collection as a URL-encoded scalar string.</p>
+<h4 id="params-set">params set</h4>
+<p><code>params set</code> will replace the Request's entire URL Query Parameter encoded string with the provided value. The provided value is assumed to already be URL-encoded.</p>
+<p><code>['params', 'set', 'param1=value1&amp;param2=value2']</code></p>
+<p>To clear the URL parameters, use <code>['params', 'set', '']</code></p>
+<h4 id="params-replace">params replace</h4>
+<p><code>params replace</code> performs a search/replace operation on the url-encoded query string. The search and replacement values are assumed to already be URL-encoded.</p>
+<p><code>['params', 'replace', 'search value', 'replacement value']</code></p>
+<h3 id="method">method</h3>
+<p><code>method</code> rewriters update the HTTP request's method</p>
+<h4 id="method-set">method set</h4>
+<p><code>method set</code> sets the Request's HTTP Method to the provided value. This value is not currently validated against known HTTP Method. The instruction should be configured to include a known and properly-formatted (all caps) HTTP Method.</p>
+<p><code>['method', 'set', 'GET']</code></p>
+<h3 id="host">host</h3>
+<p><code>host</code> rewriters update the HTTP Request's host - defined as the hostname:port, as expressed in the Request's <code>Host</code> header.</p>
+<h4 id="host-set">host set</h4>
+<p><code>host set</code> sets the Request's <code>Host</code> header to the provided value.</p>
+<p><code>['host', 'set', 'my.new.hostname:9999']</code></p>
+<p><code>['host', 'set', 'my.new.hostname']</code> Trickster will assume a standard source port 80/443 depending upon the URL scheme</p>
+<h4 id="host-replace">host replace</h4>
+<p><code>host replace</code> performs a search/replace operation on the Request's <code>Host</code> Header.</p>
+<p><code>['host', 'replace', ':8480', '']</code></p>
+<p><code>['host', 'replace', ':443', ':8443']</code></p>
+<p><code>['host', 'replace', 'example.com', 'tricksterproxy.io']</code></p>
+<h3 id="hostname">hostname</h3>
+<p><code>hostname</code> rewriters update the HTTP Request's hostname, without respect to the port.</p>
+<h4 id="hostname-set">hostname set</h4>
+<p><code>hostname set</code> sets the Request's hostname, without changing the port.</p>
+<p><code>['hostname', 'set', 'my.new.hostname']</code></p>
+<h4 id="hostname-replace">hostname replace</h4>
+<p><code>hostname replace</code> performs a search/replace on the Request's hostname, without respect to the port.</p>
+<p><code>['hostname', 'replace', 'example.com', 'tricksterproxy.io']</code></p>
+<h3 id="port">port</h3>
+<p><code>port</code> rewriters update the HTTP Request's port, without respect to the hostname.</p>
+<h4 id="port-set">port set</h4>
+<p><code>port set</code> sets the Request's port.</p>
+<p><code>['port', 'set', '8480']</code></p>
+<h4 id="port-replace">port replace</h4>
+<p><code>port replace</code> performs a search/replace on the port, as if it was a string. The search and replacement values must be integers and are not validated.</p>
+<p><code>['port', 'replace', '8480', '']</code></p>
+<h4 id="port-delete">port delete</h4>
+<p><code>port delete</code> removes the port from the Request. This will cause the port to be assumed based on the URL scheme.</p>
+<p><code>['port', 'delete']</code></p>
+<h3 id="scheme">scheme</h3>
+<p><code>scheme</code> rewriters update the HTTP Request's scheme (<code>http</code> or <code>https</code>).</p>
+<h4 id="scheme-set">scheme set</h4>
+<p><code>scheme set</code> sets the scheme of the HTTP Request URL. This must be <code>http</code> or <code>https</code> in lowercase, and is not validated.</p>
+<p><code>['scheme', 'set', 'https']</code></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../range_request/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Byte Range Request Support
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../retention/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Trickster Caching Retention Policies
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
